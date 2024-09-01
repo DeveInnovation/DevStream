@@ -5,7 +5,7 @@ import HomePage from "@/components/Home/HomePage";
 
 const ProfilePage = async () => {
 
-    const res = await fetch(`https://profile-view-be.vercel.app/profile/@rahul`, {cache: 'no-store'})
+    const res = await fetch(`https://profile-view-be.vercel.app/profile/@rahul`, {cache: "no-store"})
     const data = await res.json()
     console.log(data);
     return (
