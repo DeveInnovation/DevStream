@@ -1,5 +1,5 @@
 import React from "react";
-const loginImg = "/assets/login.jpg";
+const signupImg = "/assets/signup.jpg";
 import { FaStarOfLife } from "react-icons/fa";
 import Link from "next/link";
 
@@ -10,7 +10,7 @@ function SignUpPage() {
         <div
           className="w-full"
           style={{
-            backgroundImage: `url(${loginImg})`,
+            backgroundImage: `url(${signupImg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             height: "100vh",
