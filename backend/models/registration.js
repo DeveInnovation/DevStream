@@ -7,9 +7,17 @@ const create_user = new Schema({
         required: true
     },
     email: {
-        type: email,
+        type: String,
         required: true,
-        unique: true
+        unique: true,
+        lowercase: true,
+        validate: {
+            validator: function (v) {
+              // Regular expression to validate email format
+              return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(v);
+            },
+            message: props => `${props.value} is not a valid email address!`
+          }
     },
     phone: {
         type: String,
@@ -22,3 +30,4 @@ const create_user = new Schema({
 })
 
 const User = mongoose.model("User", create_user) 
+module.exports = {User}
