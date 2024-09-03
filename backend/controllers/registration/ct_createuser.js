@@ -5,14 +5,15 @@ const jwt_privetkey = process.env.JWT_KEY
 
 const createUser = async(req, res) =>{
     try{
-        const {name, email, phone, password} = req.body;
+        const {name, email, phone, password, terms_condition} = req.body;
         const newPass = await bcrypt.hash(password, 8);
         
         const newuser = new User({
           name,
           email,
           phone,
-          password: newPass
+          password: newPass,
+          terms_condition
         })
         
         if(newuser){
