@@ -26,7 +26,6 @@ function SignUpPage() {
     const password = form.password.value;
     const terms_condition = form.terms_condition.checked;
     const userCredentials = { name, email, phone, password, terms_condition };
-    console.log(userCredentials);
     axios
       .post("https://devstream-server.vercel.app/createuser", userCredentials)
       .then((response) => {
@@ -36,7 +35,7 @@ function SignUpPage() {
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error)
         if (error.status === 400) {
           setLoading(false);
           setError(true);
