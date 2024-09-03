@@ -26,6 +26,7 @@ function SignUpPage() {
     const password = form.password.value;
     const terms_condition = form.terms_condition.checked;
     const userCredentials = { name, email, phone, password, terms_condition };
+    console.log(userCredentials);
     axios
       .post("https://devstream-server.vercel.app/createuser", userCredentials)
       .then((response) => {
@@ -35,7 +36,7 @@ function SignUpPage() {
         }
       })
       .catch((error) => {
-        console.error(error)
+        console.log(error);
         if (error.status === 400) {
           setLoading(false);
           setError(true);
@@ -45,8 +46,8 @@ function SignUpPage() {
   };
 
   return (
-    <section className="w-full flex">
-      <div className="w-[50%] h-screen overflow-hidden">
+    <section className="w-full md:flex">
+      <div className="md:w-[50%] absolute md:relative md:z-0 -z-10 w-full h-screen overflow-hidden">
         <div
           className="w-full"
           style={{
@@ -58,7 +59,7 @@ function SignUpPage() {
           }}
         ></div>
       </div>
-      <div className="w-[50%]">
+      <div className="md:w-[50%] w-full bg-[#ffffffea] backdrop-blur-sm md:backdrop-blur-0">
         <div className="flex justify-center items-center w-full h-[100vh]">
           <div className="">
             <div>

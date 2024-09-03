@@ -14,8 +14,8 @@ const handleLogin=(event)=>{
 
 function LogIn() {
   return (
-    <section className="w-full flex">
-      <div className="w-[50%] h-screen overflow-hidden">
+    <section className="w-full md:flex">
+      <div className="md:w-[50%] absolute md:relative md:z-0 -z-10 w-full h-screen overflow-hidden">
         <div
           className="w-full"
           style={{
@@ -27,7 +27,7 @@ function LogIn() {
           }}
         ></div>
       </div>
-      <div className="w-[50%]">
+      <div className="md:w-[50%] w-full bg-[#ffffffea] backdrop-blur-sm md:backdrop-blur-0">
         <div className="flex justify-center items-center w-full h-[100vh]">
           <div className="">
             <div>
