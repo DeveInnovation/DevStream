@@ -3,6 +3,15 @@ import React from "react";
 const loginImg = "/assets/login.jpg";
 import { FaStarOfLife } from "react-icons/fa";
 
+const handleLogin=(event)=>{
+  event.preventDefault()
+  const form=event.target
+  const email=form.email.value
+  const password=form.password.value
+  const userCredentials={email,password}
+  console.log(userCredentials);
+}
+
 function LogIn() {
   return (
     <section className="w-full flex">
@@ -30,7 +39,7 @@ function LogIn() {
               </p>
             </div>
             <div className="w-[400px] mt-12">
-              <form>
+              <form onSubmit={handleLogin}>
                 <div className="flex flex-col">
                   <label
                     className="ml-1 text-[14px] font-medium leading-5 flex items-start"
