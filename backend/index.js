@@ -18,13 +18,9 @@ app.use(cors())
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@devinnovationdb.rcz6p.mongodb.net/DevStream?retryWrites=true&w=majority&appName=DevInnovationDB`)
   .then(() => console.log('Database connected!'));
   
-  //create a user
-  app.post('/createuser', createUser)
-  // app 
-
-
-
-
+  
+  app.post('/createuser', createUser) //create a user
+  app.post
 
   app.get('/', (req, res) => {
     res.send('Hello World!')
