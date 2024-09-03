@@ -1,21 +1,34 @@
+"use client"
+import Image from "next/image";
+import Link from "next/link";
+const sitelogo = '/assets/logo.png'
+const null_avatar = "/assets/null_avatar.jpg" 
+
 const Navbar = () => {
+
+    const menuItems =  <>
+        <li><Link href={'/'}>Home</Link></li>
+        <li><Link href={'/'}>About</Link></li>
+        <li><Link href={'/login'}>Login</Link></li>
+        <li><Link href={'/signup'}>Signup</Link></li>
+    </>
+
     return (
-        <div>
-            <div className='mx-auto'>
-                <nav className='flex items-center w-full px-5 h-[100px] shadow-lg drop-shadow-xl'>
-                <div className='w-1/2 flex items-center gap-8 justify-start'>
-                <menu className="text-[24px] font-semibold">Logo</menu>
-                <menu>Tutorials</menu>
-                <menu>Exercise</menu>
-                <menu>Example</menu>
+        <nav className="fixed top-0 w-full z-50 backdrop-blur-lg border-b-[1px] bg-[#ffffff94] border-black">
+            <div className="flex justify-between items-center w-[1144px] mx-auto h-[65px]">
+                <div>
+                    <Image src={sitelogo} width={150} height={100} alt="LOGO"></Image>
                 </div>
-                <div className='w-1/2 flex items-center gap-8 justify-end'>
-                <input type="search" value={"Search"} className="py-1 border px-2 rounded-3xl cursor-pointer"/>
-                <button className="bg-primary text-[#ffffff] px-4 py-2 rounded-3xl">Login</button>
+                <div className="flex items-center space-x-5">
+                    <ul className="flex items-center gap-8">
+                        {menuItems}
+                    </ul>
+                    <div>
+                        <Image className="rounded-[100%]" src={null_avatar} alt="userprofile" width={40} height={40}></Image>
+                    </div>
                 </div>
-                </nav>
             </div>
-        </div>
+        </nav>
     );
 };
 
