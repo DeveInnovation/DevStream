@@ -26,6 +26,10 @@ const create_user = new Schema({
     password: {
         type: String,
         required: true
+    },
+    terms_condition: {
+        type: Boolean,
+        required: true
     }
 })
 
