@@ -8,12 +8,12 @@ const flower = "/assets/flower.jpg";
 const HomePage = () => {
   const [counter, setCounter] = useState(0);
   return (
-    <div className="min-h-screen w-full bg-[#ffffff] text-center">
-      <div className="flex flex-col w-full h-[90vh] justify-center items-center">
+    <div className="min-h-screen w-full text-center bg-green-50">
+      <div className="flex flex-col w-full h-[100vh] justify-center items-center uppercase">
         <h2 className="text-[64px] text-center mx-auto mt-24">
-          Master the Art of Code: Learn, <br />
+          <span className="text-green-500">Master</span> the Art of Code: Learn, <br />
           Practice, and Innovate Your <br />
-          Way to Success
+          Way to <span className="text-green-500 drop-shadow-2xl">Success</span>
         </h2>
         <p className="text-center my-20">
           Unlock your potential with hands-on tutorials, real-world projects,{" "}
