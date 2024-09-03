@@ -1,8 +1,8 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
-const sitelogo = '/assets/logo.png'
-const null_avatar = "/assets/null_avatar.jpg" 
+const siteLogo = '/assets/logo.png';
+const null_avatar = "/assets/null_avatar.jpg"; 
 
 const Navbar = () => {
 
@@ -17,7 +17,7 @@ const Navbar = () => {
         <nav className="fixed top-0 w-full z-50 backdrop-blur-lg border-b-[1px] bg-[#ffffff94] border-black">
             <div className="flex justify-between items-center w-[1144px] mx-auto h-[65px]">
                 <div>
-                    <Image src={sitelogo} width={150} height={100} alt="LOGO"></Image>
+                    <Image src={siteLogo} width={150} height={100} alt="LOGO"></Image>
                 </div>
                 <div className="flex items-center space-x-5">
                     <ul className="flex items-center gap-8">
