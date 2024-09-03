@@ -18,7 +18,7 @@ const createUser = async(req, res) =>{
         
         if(newuser){
           await newuser.save()
-          const token = JWT.sign({ user: newuser }, jwt_privetkey, {expiresIn: "5h"})
+          const token = JWT.sign({ email }, jwt_privetkey, {expiresIn: "5h"})
           return res.send({user_email: newuser.email, token})
         }
         else{
@@ -40,4 +40,22 @@ const createUser = async(req, res) =>{
       }
 }
 
-module.exports = createUser
+const userLogin = async(req, res) => {
+    const {email, password} = req.body;
+    const existuser = await User.findOne({email}) // find user
+    if(existuser){
+      bcrypt.compare(password, existuser.password, async (err, response) => {
+        if(response === true){
+          const token = JWT.sign({ email }, jwt_privetkey, {expiresIn: "5h"})
+          return res.status(200).send({email: existuser.email, token, message: "Login successful!"})
+        }else{
+          return res.status(404).send({error: "Incorrect password."})
+        }
+      }) //password checking
+    }
+    else{
+      return res.status(404).send({error: "This user does not exists!"})
+    }
+}
+
+module.exports = {createUser, userLogin}
