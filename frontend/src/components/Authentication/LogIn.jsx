@@ -4,6 +4,10 @@ const loginImg = "/assets/login.jpg";
 import { FaStarOfLife } from "react-icons/fa";
 
 function LogIn() {
+
+
+  
+
   return (
     <section className="w-full flex">
       <div className="w-[50%] h-screen overflow-hidden">

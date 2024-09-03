@@ -1,9 +1,43 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import Cookies from "js-cookie";
 const signupImg = "/assets/signup.jpg";
 import { FaStarOfLife } from "react-icons/fa";
 import Link from "next/link";
+import axios from "axios";
 
 function SignUpPage() {
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  /* ============================================
+----FORM HANDLING USING EVENT HANDElER---------
+==============================================*/
+  const formHandler = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const phone = form.number.value;
+    const password = form.password.value;
+    const terms_condition = form.terms_condition.checked;
+    const userCredentials = { name, email, phone, password, terms_condition };
+    console.log(userCredentials);
+    axios
+      .post("https://devstream-server.vercel.app/createuser", userCredentials)
+      .then((response) => {
+        if (response.status === 200 && response.data.token) {
+          Cookies.set("sessiontoken", response.data.token);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.status === 400) {
+          setError(true);
+          setErrorMessage(error.response.data.error);
+        }
+      });
+  };
+
   return (
     <section className="w-full flex">
       <div className="w-[50%] h-screen overflow-hidden">
@@ -30,7 +64,7 @@ function SignUpPage() {
               </p>
             </div>
             <div className="w-[400px] mt-12">
-              <form>
+              <form onSubmit={formHandler}>
                 <div className="flex flex-col">
                   <label
                     className="ml-1 text-[14px] font-medium leading-5 flex items-start"
@@ -67,6 +101,21 @@ function SignUpPage() {
                 <div className="flex flex-col mt-4">
                   <label
                     className="ml-1 text-[14px] font-medium leading-5 flex items-start"
+                    htmlFor="number"
+                  >
+                    Number
+                  </label>
+                  <input
+                    className=" border-[1px] outline-none mt-1 rounded-lg border-[#dcdcdc] px-3 py-2"
+                    type="number"
+                    name="number"
+                    id="number"
+                    placeholder="Type Your number"
+                  />
+                </div>
+                <div className="flex flex-col mt-4">
+                  <label
+                    className="ml-1 text-[14px] font-medium leading-5 flex items-start"
                     htmlFor="password"
                   >
                     Password
@@ -84,27 +133,32 @@ function SignUpPage() {
                 <div className="w-full mt-4 flex gap-2">
                   <div>
                     <input
+                      required
                       className="outline-none text-[#444444]"
                       type="checkbox"
-                      name="termscondition"
+                      name="terms_condition"
                       id=""
                     />
                   </div>
                   <div className="font-normal text-[12px] leading-5 text-[#444444]">
                     <span>I agree to all </span>
                     <Link href="/" className="underline">
-                      Forget Password?
+                      Terms of Service
                     </Link>
                     <span> and </span>
                     <Link href="/" className=" underline">
-                      Forget Password?
+                      Privacy Policy
                     </Link>
                   </div>
                 </div>
-                <div className="w-full">
+
+                <div className="w-full mt-[32px]">
+                  {error && (
+                    <p className="text-red-500 pl-2 text-sm">{errorMessage}</p>
+                  )}
                   <button
                     type="submit"
-                    className="bg-[#21005D] text-[#ffffff] text-[14px] font-medium leading-5 text-center py-[10px] w-full rounded-[100px] mt-[32px]"
+                    className="bg-[#21005D] text-[#ffffff] text-[14px] font-medium leading-5 text-center py-[10px] w-full rounded-[100px] "
                   >
                     Sign Up
                   </button>
