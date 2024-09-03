@@ -4,10 +4,6 @@ const loginImg = "/assets/login.jpg";
 import { FaStarOfLife } from "react-icons/fa";
 
 function LogIn() {
-
-
-  
-
   return (
     <section className="w-full flex">
       <div className="w-[50%] h-screen overflow-hidden">
@@ -85,8 +81,10 @@ function LogIn() {
                   </button>
                 </div>
                 <div className="w-full">
-                  <h5 className="text-[12px] leading-5 font-medium text-[#444444] mt-4">
-                    Already have an account?<Link href="/">Login</Link>
+                  <h5 className="text-[14px] leading-5 font-medium text-[#444444] mt-4">
+                    If You Are New! Please <Link className="text-green-500 underline" href="/signup">
+                      sign up
+                    </Link>
                   </h5>
                 </div>
               </form>
