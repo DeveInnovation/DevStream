@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-const page = () => {
-  return (
-    <section>
+const VerifyUserEmail = () => {
+    return (
+        <section>
       <div className="flex justify-center items-center h-[100vh] w-full bg-green-50 text-center flex-col text-white">
         <h1 className="text-[36px] mb-5 text-green-500">
           Verify your email to active your account!
@@ -17,7 +17,7 @@ const page = () => {
         </h5>
       </div>
     </section>
-  );
+    );
 };
 
-export default page;
+export default VerifyUserEmail;

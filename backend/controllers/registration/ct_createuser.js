@@ -80,12 +80,13 @@ const userVerify = async(req, res) => {
 
 
 const verification_email = async (email, name) =>{
-
+  console.log(email);
+  // console.log("PASS", process.env.GPASS);
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: "deveinnovation@gmail.com",
-      pass: "ilzd dswg lebx tdsm",
+      pass: process.env.GPASS,
     },
   });
   
@@ -105,13 +106,13 @@ const verification_email = async (email, name) =>{
                       We're excited to have you on board. To get started, please activate your account by clicking the button below:
                   </p>
                   <div style="text-align: center; margin: 20px 0;">
-                      <a href="https://user-verify/${email}" style="display: inline-block; padding: 12px 20px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 16px;">Activate My Account</a>
+                      <a href="http://localhost:3000/verify_email/${email}" style="display: inline-block; padding: 12px 20px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 16px;">Activate My Account</a>
                   </div>
                   <p style="color: #333333; font-size: 16px; line-height: 1.5;">
                       If the button above doesn't work, please copy and paste the following link into your browser:
                   </p>
                   <p style="color: #007bff; font-size: 14px; word-wrap: break-word;">
-                      https://user-verify/${email}
+                      http://localhost:3000/verify_email/${email}
                   </p>
                   <p style="color: #333333; font-size: 16px; line-height: 1.5;">
                       This link will expire in 24 hours, so be sure to activate your account soon!
@@ -130,6 +131,7 @@ const verification_email = async (email, name) =>{
           </div>
     `,
   });
+  console.log("Message sent: %s", info.messageId);
 }
 
 module.exports = {createUser, userLogin, userVerify}
