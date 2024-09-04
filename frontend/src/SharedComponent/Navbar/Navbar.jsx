@@ -1,4 +1,5 @@
 "use client"
+import Avvvatars from "avvvatars-react";
 import Image from "next/image";
 import Link from "next/link";
 const siteLogo = '/assets/logo.png';
@@ -24,7 +25,8 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                     <div>
-                        <Image className="rounded-[100%]" src={null_avatar} alt="userprofile" width={40} height={40}></Image>
+                        {/* <Image className="rounded-[100%]" src={null_avatar} alt="userprofile" width={40} height={40}></Image> */}
+                        <button className="border-[1px] rounded-full border-gray-300"><Avvvatars style="shape" value="3" /></button>
                     </div>
                 </div>
             </div>
