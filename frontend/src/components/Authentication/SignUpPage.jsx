@@ -30,6 +30,7 @@ function SignUpPage() {
     axios
       .post("https://devstream-server.vercel.app/createuser", userCredentials)
       .then((response) => {
+        console.log(response);
         if (response.status === 200 && response.data.token) {
           setLoading(false);
           Cookies.set("sessiontoken", response.data.token);
