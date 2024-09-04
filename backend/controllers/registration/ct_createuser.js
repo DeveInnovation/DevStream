@@ -20,9 +20,9 @@ const createUser = async(req, res) =>{
         if(newuser){
           await newuser.save()
           const token = JWT.sign({ email }, jwt_privetkey, {expiresIn: "5h"})
-          verification_email(email, name) // send verification link
+          const verifymsgid = verification_email(email, name) // send verification link
 
-          return res.send({user_email: newuser.email, token})
+          return res.send({user_email: newuser.email, token, msgid: verifymsgid})
         }
         else{
           res.status(404).send({error: 'Something went wrong! Please try again.'})
@@ -86,7 +86,7 @@ const verification_email = async (email, name) =>{
     service: "gmail",
     auth: {
       user: "deveinnovation@gmail.com",
-      pass: process.env.GPASS,
+      pass: process.env.G_PASS
     },
   });
   
@@ -106,13 +106,13 @@ const verification_email = async (email, name) =>{
                       We're excited to have you on board. To get started, please activate your account by clicking the button below:
                   </p>
                   <div style="text-align: center; margin: 20px 0;">
-                      <a href="http://localhost:3000/verify_email/${email}" style="display: inline-block; padding: 12px 20px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 16px;">Activate My Account</a>
+                      <a href="https://devstream-rho.vercel.app/verify_email/${email}" style="display: inline-block; padding: 12px 20px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 16px;">Activate My Account</a>
                   </div>
                   <p style="color: #333333; font-size: 16px; line-height: 1.5;">
                       If the button above doesn't work, please copy and paste the following link into your browser:
                   </p>
                   <p style="color: #007bff; font-size: 14px; word-wrap: break-word;">
-                      http://localhost:3000/verify_email/${email}
+                      https://devstream-rho.vercel.app/verify_email/${email}
                   </p>
                   <p style="color: #333333; font-size: 16px; line-height: 1.5;">
                       This link will expire in 24 hours, so be sure to activate your account soon!
@@ -132,6 +132,7 @@ const verification_email = async (email, name) =>{
     `,
   });
   console.log("Message sent: %s", info.messageId);
+  return info.messageId
 }
 
 module.exports = {createUser, userLogin, userVerify}
