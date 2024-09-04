@@ -49,8 +49,8 @@ function LogIn() {
             backgroundImage: `url(${loginImg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            height: "100vh",
-            width: "100%",
+            height: "100%",
+            width: "100%"
           }}
         ></div>
       </div>
