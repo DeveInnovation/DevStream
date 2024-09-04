@@ -8,19 +8,26 @@ const flower = "/assets/flower.jpg";
 const HomePage = () => {
   const [counter, setCounter] = useState(0);
   return (
-    <div className="min-h-screen w-full text-center bg-green-50">
-      <div className="flex flex-col w-full h-[100vh] justify-center items-center uppercase">
-        <h2 className="text-[64px] text-center mx-auto mt-24">
+    <div className="min-h-screen w-full text-center bg-green-50 pt-16">
+      <div className="absolute duration-500 mx-auto overflow-hidden w-full bg-gray-300">
+        <div className="flex flex-wrap gap-[1px]  h-screen  w-[102vw] overflow-hidden">
+        {
+          Array.from({length: 200}).map((box, i) => <div key={i} className="w-[100px] h-[100px] bg-green-50 duration-1000 hover:duration-0 hover:bg-green-500"></div>)
+        }
+        </div>
+      </div>
+      <div className="flex flex-col w-full h-[100vh] justify-center items-center uppercase ">
+        <h2 className="text-[64px] text-center z-10 mx-auto mt-24">
           <span className="text-green-500">Master</span> the Art of Code: Learn, <br />
           Practice, and Innovate Your <br />
           Way to <span className="text-green-500 drop-shadow-2xl">Success</span>
         </h2>
-        <p className="text-center my-20">
+        <p className="text-center my-20 z-10">
           Unlock your potential with hands-on tutorials, real-world projects,{" "}
           <br />
           and expert guidance.
         </p>
-        <button className="bg-primary text-[#ffffff] px-6 py-2 rounded-3xl">
+        <button className="bg-primary z-10 bg-green-500 border-2 border-white text-[#ffffff] px-6 py-2 rounded-3xl hover:shadow-2xl hover:shadow-green-500">
           Get Started
         </button>
       </div>
