@@ -58,4 +58,21 @@ const userLogin = async(req, res) => {
     }
 }
 
-module.exports = {createUser, userLogin}
+const userVerify = async(req, res) => {
+  const email = req.params.email
+  const existuser = await User.findOne({email}) // find user
+  if(existuser){
+    if(existuser.is_active === false){
+      await User.findOneAndUpdate({email: email}, {is_active: true})
+      return res.status(200).send({message: "Email verified successfully."})
+    }
+    else{
+      return res.status(500).send({error: "User already verified!"})
+    }
+  }
+  else{
+    return res.status(404).send({error: "This is not a valid gmail account!"})
+  }
+}
+
+module.exports = {createUser, userLogin, userVerify}

@@ -9,7 +9,7 @@ const HomePage = () => {
   const [counter, setCounter] = useState(0);
   return (
     <div className="min-h-screen w-full text-center bg-green-50 pt-16">
-      <div className="absolute duration-500 mx-auto overflow-hidden w-full bg-gray-300">
+      <div className="absolute duration-500 mx-auto overflow-hidden w-full bg-gray-200">
         <div className="flex flex-wrap gap-[1px]  h-screen  w-[102vw] overflow-hidden">
         {
           Array.from({length: 200}).map((box, i) => <div key={i} className="w-[100px] h-[100px] bg-green-50 duration-1000 hover:duration-0 hover:bg-green-500"></div>)
