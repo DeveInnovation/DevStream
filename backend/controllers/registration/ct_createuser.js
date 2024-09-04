@@ -1,6 +1,7 @@
 const {User} = require('../../models/registration');
+const nodemailer = require("nodemailer");
 const bcrypt = require('bcrypt');
-var JWT = require('jsonwebtoken');
+var   JWT = require('jsonwebtoken');
 const jwt_privetkey = process.env.JWT_KEY
 
 const createUser = async(req, res) =>{
@@ -19,6 +20,8 @@ const createUser = async(req, res) =>{
         if(newuser){
           await newuser.save()
           const token = JWT.sign({ email }, jwt_privetkey, {expiresIn: "5h"})
+          verification_email(email, name) // send verification link
+
           return res.send({user_email: newuser.email, token})
         }
         else{
@@ -73,6 +76,60 @@ const userVerify = async(req, res) => {
   else{
     return res.status(404).send({error: "This is not a valid gmail account!"})
   }
+}
+
+
+const verification_email = async (email, name) =>{
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "deveinnovation@gmail.com",
+      pass: "ilzd dswg lebx tdsm",
+    },
+  });
+  
+  const info = await transporter.sendMail({
+    from: '"DevStream" <deveinnovation@gmail.com>',
+    to: email, 
+    subject: "Account verification", 
+    text: "Please active your account", 
+    html: `
+            <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
+              <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                  <h2 style="text-align: center; color: #333333;">Welcome to DevStream!</h2>
+                  <p style="color: #333333; font-size: 16px; line-height: 1.5;">
+                      Hello ${name ? name : "dear"},
+                  </p>
+                  <p style="color: #333333; font-size: 16px; line-height: 1.5;">
+                      We're excited to have you on board. To get started, please activate your account by clicking the button below:
+                  </p>
+                  <div style="text-align: center; margin: 20px 0;">
+                      <a href="https://user-verify/${email}" style="display: inline-block; padding: 12px 20px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 16px;">Activate My Account</a>
+                  </div>
+                  <p style="color: #333333; font-size: 16px; line-height: 1.5;">
+                      If the button above doesn't work, please copy and paste the following link into your browser:
+                  </p>
+                  <p style="color: #007bff; font-size: 14px; word-wrap: break-word;">
+                      https://user-verify/${email}
+                  </p>
+                  <p style="color: #333333; font-size: 16px; line-height: 1.5;">
+                      This link will expire in 24 hours, so be sure to activate your account soon!
+                  </p>
+                  <p style="color: #333333; font-size: 16px; line-height: 1.5;">
+                      If you did not sign up for a DevStream account, please ignore this email.
+                  </p>
+                  <p style="color: #333333; font-size: 16px; line-height: 1.5;">
+                      Thank you for joining DevStream! We're thrilled to have you with us.
+                  </p>
+                  <p style="color: #333333; font-size: 16px; line-height: 1.5;">
+                      Best regards,<br>
+                      <strong>The DevStream Team</strong>
+                  </p>
+              </div>
+          </div>
+    `,
+  });
 }
 
 module.exports = {createUser, userLogin, userVerify}
