@@ -9,7 +9,7 @@ const {User} = require('./models/registration');
 // -------------------------------------------------
 
 // require controllers 
-const {createUser, userLogin} = require('./controllers/registration/ct_createuser')
+const {createUser, userLogin, userVerify} = require('./controllers/registration/ct_createuser')
 // -------------------------------------------------
 
 app.use(express.json())
@@ -21,6 +21,7 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@de
   
   app.post('/createuser', createUser) //create a user
   app.post('/userlogin', userLogin)
+  app.patch('/user-verify-devstream/:email', userVerify)
 
 
   app.get('/', (req, res) => {
