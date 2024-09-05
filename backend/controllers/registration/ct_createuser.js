@@ -91,7 +91,7 @@ const verification_email = async (email, name) =>{
   const info = await transporter.sendMail({
     from: '"DevStream" <deveinnovation@gmail.com>',
     to: email, 
-    subject: "Account verification", 
+    subject: `Account verification - Date:${new Date()}`, 
     text: "Please active your account", 
     html: `
             <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
