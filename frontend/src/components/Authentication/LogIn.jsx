@@ -7,11 +7,15 @@ import Cookies from "js-cookie";
 import { ThreeDots } from "react-loader-spinner";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 function LogIn() {
+  const router = useRouter()
+
   const [error, setError] = useState(false);
   const [Messages, setMessages] = useState(null);
   const [loading, setLoading] = useState(false);
+
   const handleLogin = (event) => {
     setLoading(true);
     setError(false);
@@ -28,6 +32,7 @@ function LogIn() {
           setLoading(false);
           toast.success("Log in Successful");
           Cookies.set("sessiontoken", response.data.token);
+          router.push('/')
         }
       })
       .catch((error) => {
