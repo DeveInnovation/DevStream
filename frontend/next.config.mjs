@@ -1,4 +1,13 @@
+// next.config.mjs
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+const nextConfig = {
+    experimental: {
+      // Enable middleware support
+      middleware: true,
+    },
+    // Define path matchers if needed
+    matcher: ['/login*', '/profile/:path*'],
+  };
+  
+  export default nextConfig;
+  
