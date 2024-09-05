@@ -6,10 +6,13 @@ const signupImg = "/assets/signup.jpg";
 import { FaStarOfLife } from "react-icons/fa";
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 function SignUpPage() {
+  const router=useRouter()
+  const [success, setSuccess] = useState(null);
   const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [serverMessage, setServerMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   /* ============================================
 ----FORM HANDLING USING EVENT HANDElER---------
@@ -17,7 +20,7 @@ function SignUpPage() {
   const formHandler = (event) => {
     setLoading(true);
     setError(false);
-    setErrorMessage(null);
+    setServerMessage(null);
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
@@ -33,7 +36,10 @@ function SignUpPage() {
         console.log(response);
         if (response.status === 200 && response.data.token) {
           setLoading(false);
+          setSuccess(true);
+          setServerMessage("Account Crated Successfully!");
           Cookies.set("sessiontoken", response.data.token);
+          setTimeout(()=>{router.push('/verify')},2000)
         }
       })
       .catch((error) => {
@@ -41,11 +47,11 @@ function SignUpPage() {
         if (error.status === 400) {
           setLoading(false);
           setError(true);
-          setErrorMessage(error.response.data.error);
+          setSuccess(false);
+          setServerMessage(error.response.data.error);
         }
       });
   };
-
   return (
     <section className="w-full md:flex">
       <div className="md:w-[50%] absolute md:relative md:z-0 -z-10 w-full h-screen overflow-hidden">
@@ -161,11 +167,16 @@ function SignUpPage() {
                 </div>
 
                 <div className="w-full mt-[16px]">
-                  {error && (
-                    <p className="text-red-500 pl-2 text-sm mb-2">
-                      {errorMessage}
-                    </p>
-                  )}
+                  {error ||
+                    (success && (
+                      <p
+                        className={`${
+                          error ? "text-red-500" : "text-green-500"
+                        } pl-2 text-sm mb-2`}
+                      >
+                        {serverMessage}
+                      </p>
+                    ))}
                   <button
                     type="submit"
                     className="bg-[#21005D] text-[#ffffff] text-[14px] flex justify-center font-medium leading-5 text-center py-[10px] w-full rounded-[100px] "
@@ -188,7 +199,10 @@ function SignUpPage() {
                 </div>
                 <div className="w-full">
                   <h5 className="text-[14px] leading-5 font-medium text-[#444444] mt-4">
-                    Already have an account? <Link className="text-green-500 underline" href="/login">login</Link>
+                    Already have an account?{" "}
+                    <Link className="text-green-500 underline" href="/login">
+                      login
+                    </Link>
                   </h5>
                 </div>
               </form>
