@@ -20,7 +20,7 @@ const createUser = async(req, res) =>{
         if(newuser){
           await newuser.save()
           const token = JWT.sign({ email }, jwt_privetkey, {expiresIn: "5h"})
-          const verifymsgid = verification_email(email, name) // send verification link
+          const verifymsgid = await verification_email(email, name) // send verification link
 
           return res.send({user_email: newuser.email, token, msgid: verifymsgid})
         }
@@ -80,8 +80,6 @@ const userVerify = async(req, res) => {
 
 
 const verification_email = async (email, name) =>{
-  console.log(email);
-  // console.log("PASS", process.env.GPASS);
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
