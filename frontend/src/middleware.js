@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
-  const token = request.cookies.get('sessiontoken'); // access token
+  const token = request.cookies.get('sessiontoken'); // access t
 
   // protected routes
   const protectedPaths = ['/login', '/signup'];

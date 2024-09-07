@@ -8,9 +8,6 @@ const flower = "/assets/flower.jpg";
 const HomePage = () => {
   const [counter, setCounter] = useState(0);
   return (
-    <div className="min-h-screen w-full text-center bg-green-50">
-      <div className="flex flex-col w-full h-[100vh] justify-center items-center uppercase">
-        <h2 className="text-[64px] text-center mx-auto mt-24 font-semibold">
     <div className="min-h-screen w-full text-center bg-green-50 pt-16">
       <div className="absolute duration-500 mx-auto overflow-hidden w-full bg-gray-200">
         <div className="flex flex-wrap gap-[1px]  h-screen  w-[102vw] overflow-hidden">
