@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen w-full text-center bg-green-50">
       <div className="flex flex-col w-full h-[100vh] justify-center items-center uppercase">
-        <h2 className="text-[64px] text-center mx-auto mt-24">
+        <h2 className="text-[64px] text-center mx-auto mt-24 font-semibold">
           <span className="text-green-500">Master</span> the Art of Code: Learn, <br />
           Practice, and Innovate Your <br />
           Way to <span className="text-green-500 drop-shadow-2xl">Success</span>
