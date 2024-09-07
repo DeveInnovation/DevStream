@@ -17,7 +17,7 @@ const HomePage = () => {
         </div>
       </div>
       <div className="flex flex-col w-full h-[100vh] justify-center items-center uppercase ">
-        <h2 className="text-[64px] text-center z-10 mx-auto mt-24">
+        <h2 className="text-[64px] text-center z-10 mx-auto mt-24 font-semibold">
           <span className="text-green-500">Master</span> the Art of Code: Learn, <br />
           Practice, and Innovate Your <br />
           Way to <span className="text-green-500 drop-shadow-2xl">Success</span>
