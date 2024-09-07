@@ -13,7 +13,6 @@ const create_user = new Schema({
         lowercase: true,
         validate: {
             validator: function (v) {
-              // Regular expression to validate email format
               return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(v);
             },
             message: props => `${props.value} is not a valid email address!`
@@ -29,7 +28,16 @@ const create_user = new Schema({
     },
     terms_condition: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
+    },
+    is_active: {
+        type: Boolean,
+        default: false
+    },
+    joining_date:{
+        type: Date,
+        default: new Date()
     }
 })
 
