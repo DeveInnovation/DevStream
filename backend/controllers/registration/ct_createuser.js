@@ -19,7 +19,7 @@ const createUser = async(req, res) =>{
         
         if(newuser){
           await newuser.save()
-          const token = JWT.sign({ email }, jwt_privetkey, {expiresIn: "5h"})
+          const token = JWT.sign({ email }, jwt_privetkey, {expiresIn: "24h"})
           const verifymsgid = await verification_email(email, name) // send verification link
 
           return res.send({user_email: newuser.email, token, msgid: verifymsgid})
@@ -83,7 +83,7 @@ const verification_email = async (email, name) =>{
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "deveinnovation@gmail.com",
+      user: process.env.G_ADDRESS,
       pass: process.env.G_PASS
     },
   });
@@ -129,8 +129,32 @@ const verification_email = async (email, name) =>{
           </div>
     `,
   });
+
   console.log("Message sent: %s", info.messageId);
   return info.messageId
 }
 
-module.exports = {createUser, userLogin, userVerify}
+
+const requestForgotPassword = (req, res) => {
+  const email = req.params.email;
+  let generated_code = ""
+  const characters = process.env.RAND_NUM;
+
+  // Generate a string of 5 characters with random letters and digits
+  for (let i = 0; i < 5; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    generated_code += characters[randomIndex];
+  }
+
+  JWT.sign({
+    email, 
+    auth_verify_code: generated_code
+  }, jwt_privetkey, {expiresIn: "10m"}) // token for every request
+  
+  res.send({
+    warn: "We've sent a verification code to your email address.", 
+    warn2: "Please check your inbox (and spam/junk folder) and enter the code to proceed. If you don't receive the email within a few minutes, please try again or contact our support."
+  })
+}
+
+module.exports = {createUser, userLogin, userVerify, requestForgotPassword}
