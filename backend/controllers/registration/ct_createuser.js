@@ -145,16 +145,36 @@ const requestForgotPassword = (req, res) => {
     const randomIndex = Math.floor(Math.random() * characters.length);
     generated_code += characters[randomIndex];
   }
-
-  JWT.sign({
+  const verifytoken = JWT.sign({
     email, 
     auth_verify_code: generated_code
   }, jwt_privetkey, {expiresIn: "10m"}) // token for every request
-  
+
+  console.log("code", generated_code, verifytoken);
+
   res.send({
     warn: "We've sent a verification code to your email address.", 
     warn2: "Please check your inbox (and spam/junk folder) and enter the code to proceed. If you don't receive the email within a few minutes, please try again or contact our support."
   })
 }
 
-module.exports = {createUser, userLogin, userVerify, requestForgotPassword}
+const changePassByForgottenEmail = async(req, res) => {
+  console.log('hited');
+  const userData = req.body
+  const {authorization} = req.headers;
+  const {email, auth_verify_code} = JWT.verify(authorization, jwt_privetkey)
+
+  if(userData.email === email && auth_verify_code === userData.v_code){
+    return res.send("Tui vai finall change kor")
+  }else{
+    return res.send("vua vua sob vua")
+  }
+}
+
+
+const changePassByVerify = async(req, res) => {
+  console.log(req.body);
+  res.send("DONE")
+}
+
+module.exports = {createUser, userLogin, userVerify, requestForgotPassword, changePassByForgottenEmail, changePassByVerify}

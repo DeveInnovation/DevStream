@@ -5,13 +5,13 @@ const mongoose = require('mongoose');
 const cors = require('cors')
 require('dotenv').config()
 
-// require models 
+// require models ///////////////////////////////
   const {User} = require('./models/registration');
-// -------------------------------------------------
+//////////////////////////////////
 
-// require controllers 
-  const {createUser, userLogin, userVerify, requestForgotPassword} = require('./controllers/registration/ct_createuser')
-// -------------------------------------------------
+// require controllers /////////////////////////
+  const {createUser, userLogin, userVerify, requestForgotPassword, changePassByForgottenEmail, changePassByVerify} = require('./controllers/registration/ct_createuser')
+/////////////////////////////////
 
 app.use(express.json())
 app.use(cors())
@@ -23,8 +23,10 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@de
 app.post('/createuser', createUser) //create a user
 app.post('/userlogin', userLogin) // login
 app.patch('/user-verify-devstream/:email', userVerify) // verification by email
+
 app.post('/request-forgot-password/api/:email', requestForgotPassword)
-app.patch('/changepass-by-forgotten-email')
+app.post('/get-code-by-forgotten-email', changePassByForgottenEmail)
+app.patch('/change-pass-by-forgotten-email', changePassByVerify)
 
 
 app.get('/', (req, res) => {
