@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const UserProfile = () => {
     return (
-        <main className='w-[1144px] h-auto mx-auto mt-[100px]'>
+        <main className='w-[1144px] h- mx-auto mt-[100px]'>
             <div className='h-[589px] rounded-xl relative shadow-lg'>
             <div className='h-[196px] w-full rounded-t-xl bg-gradient-to-r from-[#652ECA] via-[#2A0A4B] to-[#3C0E39]'>
                 <div className='rounded-full border-2 border-white h-[120px] w-[120px] absolute top-[24%] left-10'>

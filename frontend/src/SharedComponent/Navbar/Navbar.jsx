@@ -9,7 +9,7 @@ const Navbar = () => {
 
     const menuItems =  <>
         <li><Link href={'/'}>Home</Link></li>
-        <li><Link href={'/'}>About</Link></li>
+        {/* <li><Link href={'/'}>About</Link></li> */}
         <li><Link href={'/login'}>Login</Link></li>
         <li><Link href={'/signup'}>Signup</Link></li>
     </>
@@ -26,7 +26,7 @@ const Navbar = () => {
                     </ul>
                     <div>
                         {/* <Image className="rounded-[100%]" src={null_avatar} alt="userprofile" width={40} height={40}></Image> */}
-                        <button className="border-[1px] rounded-full border-gray-300"><Avvvatars style="shape" value="3" /></button>
+                        <Link href={'/profile'}><button className="border-[1px] rounded-full border-gray-300"><Avvvatars style="shape" value="3" /></button></Link>
                     </div>
                 </div>
             </div>
