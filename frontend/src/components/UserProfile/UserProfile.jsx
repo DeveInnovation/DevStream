@@ -5,14 +5,14 @@ import Image from 'next/image';
 
 const UserProfile = () => {
     return (
-        <main className='w-[1144px] h- mx-auto mt-[100px]'>
-            <div className='h-[589px] rounded-xl relative shadow-lg'>
-            <div className='h-[196px] w-full rounded-t-xl bg-gradient-to-r from-[#652ECA] via-[#2A0A4B] to-[#3C0E39]'>
+        <main className='w-[1144px] mx-auto mt-[100px]'>
+            <div className='rounded-[24px] relative shadow-lg'>
+            <div className='h-[196px] w-full rounded-t-[24px] bg-gradient-to-r from-[#652ECA] via-[#2A0A4B] to-[#3C0E39]'>
                 <div className='rounded-full border-2 border-white h-[120px] w-[120px] absolute top-[24%] left-10'>
                     <Image src={profile} alt='profileImg' width={120} height={120}></Image>
                 </div>
             </div>
-                <div className='my-[7%] mx-6'>
+                <div className='py-[7%] px-6 bg-white rounded-[24px]'>
                     <h3 className='text-[32px]'>Moinur Rahman</h3>
                     <address className='[20px] not-italic text-[#6C757D] py-2'>Dhaka, Bangladesh</address>
                     <ol className='flex items-center justify-start gap-4 ml-4 text-[16px]'>
