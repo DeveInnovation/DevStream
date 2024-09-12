@@ -1,13 +1,13 @@
+import Image from 'next/image';
 import React from 'react';
-import { FaEdit } from 'react-icons/fa';
-
+import edit from '../../../src/Images/Icon-edit.svg';
 const UserAbout = () => {
     return (
         <div className='mx-auto w-[1144px] shadow-lg bg-white mt-14 rounded-[24px]'>
         <div className='flex items-center justify-between px-6 py-6'>
             <h3 className='text-2xl'>About</h3>
-            <div className='p-2 rounded-full bg-gray-50'>
-            <FaEdit className='text-2xl bg-gray-50'/>
+            <div className='p-2 rounded-full bg-gray-50 font-thin hover:text-[#00A36C] hover:bg-green-50 duration-500'>
+            <Image className='text-2xl bg-gray-50 hover:scale-110 duration-500' src={edit} alt='editIcon'/>
             </div>
         </div>
             <article className='px-6 text-justify pb-14'>

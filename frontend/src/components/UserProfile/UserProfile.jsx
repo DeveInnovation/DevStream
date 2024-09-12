@@ -2,10 +2,11 @@ import React from 'react';
 import profile from '../../Images/profile.png';
 import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 import Image from 'next/image';
+import edit from '../../../src/Images/Icon-edit.svg';
 
 const UserProfile = () => {
     return (
-        <main className='w-[1144px] mx-auto mt-[100px]'>
+        <main className='w-[1144px] mx-auto mt-8'>
             <div className='rounded-[24px] relative shadow-lg'>
             <div className='h-[196px] w-full rounded-t-[24px] bg-gradient-to-r from-[#652ECA] via-[#2A0A4B] to-[#3C0E39]'>
                 <div className='rounded-full border-2 border-white h-[120px] w-[120px] absolute top-[24%] left-10'>
@@ -13,7 +14,12 @@ const UserProfile = () => {
                 </div>
             </div>
                 <div className='py-[7%] px-6 bg-white rounded-[24px]'>
-                    <h3 className='text-[32px]'>Moinur Rahman</h3>
+                <div className='flex items-center justify-between'>
+                    <h3 className='text-2xl'>Moinur Rahman</h3>
+                    <div className='p-2 rounded-full bg-gray-50 font-thin hover:text-[#00A36C] hover:bg-green-50 duration-500'>
+                    <Image className='text-2xl bg-gray-50 hover:scale-110 duration-500' src={edit} alt='editIcon'/>
+                    </div>
+            </div>
                     <address className='[20px] not-italic text-[#6C757D] py-2'>Dhaka, Bangladesh</address>
                     <ol className='flex items-center justify-start gap-4 ml-4 text-[16px]'>
                         <li className='list-disc'>@moinur</li>
